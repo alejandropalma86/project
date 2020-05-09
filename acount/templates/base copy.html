@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To Do List - Epydemia</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon.png">
+  <!-- Bulma Version 0.8.x-->
+  <link rel='stylesheet' href='https://unpkg.com/bulma@0.8.0/css/bulma.min.css'>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar has-shadow">
+  <div class="container">
+   <!-- <div class="navbar-brand"><a class="navbar-item" href="../"><img src="{% static 'images/epydemialogonegro.png' %}" alt="Curso desarrollo web con Django por Epydemia."/></a>-->
+      <div class="navbar-burger burger" data-target="navMenu"><span></span><span></span><span></span></div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+      <div class="navbar-end">
+        {% if request.user.is_authenticated %}
+          <div class="navbar-item">
+            <p> Hola {{request.user.username}} !! </p>
+       
+            </div>
+              <div class="navbar-item">
+            <a href="{% url 'logout_a' %}">Cerrar sesión</a>
+          </div>
+        {% else %}
+          <div class="navbar-item">
+            <a href="{% url 'login_a' %}">Inicia sesión</a>
+          </div>
+          <div class="navbar-item">
+            <a href="{% url 'register_a' %}">Registrate</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
+<!--Aqui inicia el contenido dinamico con el tag block-->
+{% block content %}
+{% endblock content %}
+<!--Aqui termina el contenido dinamico con el tag endblock-->
+<footer>
+  <div class="box cta">
+    <div class="columns is-mobile is-centered">
+     <h6>Este sitio fue creado por un futuro Pythonista!  </h6>
+    </div>
+  </div>
+</footer>
+<script src="{% static 'js/bulma.js' %}"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+    $notification = $delete.parentNode;
+
+    $delete.addEventListener('click', () => {
+      $notification.parentNode.removeChild($notification);
+    });
+  });
+});
+
+</script>
+</body>
+</html>

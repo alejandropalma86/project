@@ -1,0 +1,66 @@
+{% load static %}
+
+<div class="columns is-multiline is-centered cards-container" id="sectioncontainer">
+  
+  <div class="column is-narrow">
+    <article class="message is-black">
+      <div class="message-header">
+        <p>Por hacer</p>
+        <button class="delete" aria-label="delete"></button>
+      </div>
+      <div class="message-body">
+        
+      {% for tarea in tareas_no_hechas %}
+      <div class="board-item">
+        <div class="board-item-content"><span>{{tarea.title}}</span></div>
+      </div>
+      {% endfor %}
+
+      </div>
+    </article>
+  </div>
+
+  <div class="column is-narrow">
+    <article class="message is-primary">
+      <div class="message-header">
+        <p>Terminadas</p>
+        <button class="delete" aria-label="delete"></button>
+      </div>
+      <div class="message-body">
+
+      {% for tarea in tareas_hechas %}
+        <div class="board-item">
+          <div class="board-item-content"><span>{{tarea.title}}</span></div>
+        </div>
+      {% endfor %}
+       
+      </div>
+    </article>
+  </div>
+  
+  <!--<div class="column is-narrow">
+    <article class="message is-link">
+      <div class="message-header">
+        <p>Terminadas</p>
+        <button class="delete" aria-label="delete"></button>
+      </div>
+      <div class="message-body">
+
+      
+
+      </div>
+    </article>
+  </div>-->
+  
+  
+<div class= "box has-text-centered">
+      <form action="{% url 'home_a' %}" method="post" >{% csrf_token %}
+        {{form}}
+        <button class="button">Hecha!</button>
+      </form>
+
+                    <a href="{% url 'create-todo' %}">Test</a>
+    <a href="{% url 'home_a' %}" class="button is-primary">Agregar Tarea</a>
+
+</div>
+

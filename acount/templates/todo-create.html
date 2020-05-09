@@ -1,0 +1,51 @@
+{% extends 'base.html' %}  <!-- Extendemos de nuestro archivo base.html -->
+{% load static %}  <!-- Volvemos a cargar el tag static ya que en este archivo igual accederemos a estaticos -->
+<!-- Iniciamos el contenido del bloque que asignamos en nuestro template base.html por el cual sera intercambiado al momento del render -->
+{% block content %}
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Crea tu tarea
+      </h1>
+      <h2 class="subtitle">
+          Se especifico con tu tarea para una mejor productividad.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- Inicio de la seccion del formulario -->
+<div class="columns is-centered form-section">
+    <div class="column is-half">
+        <figure class="image container is-128x128">
+          <img src="{% static 'images/chat.png' %}">
+        </figure>
+        {% include 'notifications.html' %}
+        <form action="{% url 'create-todo' %}" method="post">{% csrf_token %}
+            {{ form.user }}
+            <div class="field">
+                <label class="label">Titulo de la tarea:</label>
+                <div class="control has-icons-left has-icons-right">
+                    {{ form.title }}
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-user"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="field is-grouped">
+               <div class="control">
+                    <button class="button is-link is-light">Cancelar</button>
+                </div>
+                <div class="control">
+                    <button class="button is-link">Crear Tarea</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="columns is-mobile is-centered">
+  <div class="column is-half is-narrow"></div>
+</div>
+{% endblock content %}
+<!-- Fin de nuestro contenido de bloque -->

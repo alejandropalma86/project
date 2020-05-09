@@ -1,0 +1,24 @@
+{% load static %}
+
+<section class="container">
+  
+  <div class="level-item">
+    <h1 class="title is-4">Inicia sesión o registrate para ver tu tablero!</h1>
+  </div>
+    <br>
+  <div class="level-item">
+    <a href="{% url 'login_a' %}" class="button is-primary is-rounded is-fullwidth">Inicia Sesión</a>
+  
+  </div>
+    <br>
+  <div class="level-item">
+    <a href="{% url 'register_a' %}" class="button is-primary is-rounded is-fullwidth">Registro</a>
+  </div>
+  <br>
+  {% include 'notifications.html'%}
+  <div class="level-item">
+    <figure class="image is-256x256">
+      <img src="{% static 'images/chat.png' %}">
+    </figure>
+  </div>
+</section>
